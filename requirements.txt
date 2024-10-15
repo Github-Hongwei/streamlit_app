@@ -1,4 +1,5 @@
 streamlit
 datetime
+matplotlib
 yfinance
 plotly
