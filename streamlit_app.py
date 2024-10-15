@@ -1,8 +1,11 @@
 import streamlit as st
-import yfinance as yf
 import matplotlib.pyplot as plt
 import datetime
 import plotly.graph_objs as go
+
+import appdirs as ad
+ad.user_cache_dir = lambda *args: "/tmp"
+import yfinance as yf
 
 # Specify title and logo for the webpage.
 # Set up your web app
