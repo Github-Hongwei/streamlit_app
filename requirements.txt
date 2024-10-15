@@ -1,0 +1,4 @@
+matplotlib.pyplot
+datetime
+yfinance
+plotly.graph_objs
