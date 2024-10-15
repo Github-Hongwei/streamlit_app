@@ -33,11 +33,6 @@ else:
 
 data = yf.download(symbol,start=sdate,end=edate)
 if data is not None:
-  # Plot close prices
-  plt.figure(figsize=(8,6))
-  data['Close'].plot()
-  plt.xlabel('Date')
-  plt.ylabel('Close Price')
-  st.pyplot(plt)
+  st.line_chart(data,x=data.index,y=data.Close,x_label="Date",y_label="Close")
 else:
     st.error("Failed to fetch historical data.")
