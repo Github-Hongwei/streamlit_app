@@ -33,13 +33,11 @@ else:
 
 data = yf.download(symbol,start=sdate,end=edate)
 if data is not None:
-  # Create candlestick chart using Plotly
-  st.subheader("Candlestick Chart")
-  st.markdown("\n\n")
-  candlestick = go.Candlestick(x=data.index,open=data['Open'],high=data['High'],low=data['Low'],close=data['Close'])
-  layout = go.Layout(xaxis=dict(title='Date'),yaxis=dict(title='Price'),xaxis_rangeslider_visible=False)
-  fig = go.Figure(data=[candlestick], layout=layout)
-  # Display the chart using Streamlit
-  st.plotly_chart(fig,theme='streamlit')
+  # Plot close prices
+  plt.figure(figsize=(8,6))
+  data['Close'].plot()
+  plt.xlabel('Date')
+  plt.ylabel('Close Price')
+  st.pyplot(plt)
 else:
     st.error("Failed to fetch historical data.")
