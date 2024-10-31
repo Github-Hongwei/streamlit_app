@@ -13,17 +13,12 @@ st.set_page_config(layout="wide", page_title="WebApp_Demo")
 
 # Sidebar
 st.sidebar.title("Input")
-symbol = st.sidebar.text_input('Please enter the stock symbol: ', 'NVDA').upper()
-# Selection for a specific time frame.
-col1, col2 = st.sidebar.columns(2, gap="medium")
-with col1:
-    sdate = st.date_input('Start Date',value=datetime.date(2024,1,1))
-with col2:
-    edate = st.date_input('End Date',value=datetime.date(2024,09,30))
+symbol = st.text_input('Please enter the stock symbol: ', 'NVDA').upper()
+number=st.number_input('Please enter historical days: ', 14)
 
 st.title(f"{symbol}")
 
-df = yf.download(symbol,period='10d')
+df = yf.Ticker.history(symbol,period=f'{number}d')
 
 fig = go.Figure(data=[go.Candlestick(x=df.index,
                                      open=df['Open'],
