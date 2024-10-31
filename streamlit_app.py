@@ -14,7 +14,8 @@ st.set_page_config(layout="wide", page_title="WebApp_Demo")
 symbol = st.text_input('Please enter the stock symbol: ', 'NVDA').upper()
 
 st.title(f"{symbol}")
-df = yf.download(symbol,start='2024-01-01',end='2024-09-30',interval='1d',auto_adjust=False)
+stock=yf.Ticker(symbol)
+df = stock.history(period='7d')
 
 fig = go.Figure(data=[go.Candlestick(x=df.index,
                                      open=df['Open'],
