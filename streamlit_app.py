@@ -1,6 +1,5 @@
-from datetime import date, timedelta, datetime
+import yfinance as yf
 import streamlit as st
-import pandas as pd
 import mplfinance as mpf
 import matplotlib.pyplot as plt
 
