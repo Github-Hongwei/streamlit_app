@@ -15,7 +15,7 @@ symbol = st.text_input('Please enter the stock symbol: ', 'NVDA').upper()
 
 st.title(f"{symbol}")
 df=yf.download(symbol,start="2024-01-01",end="2024-09-30")
-st.write(df['Close'])
+st.write(df.index)
 #fig = go.Figure(data=[go.Candlestick(x=df.index,
 #                                     open=df['Open'],
 #                                     high=df['High'],
