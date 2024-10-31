@@ -17,12 +17,11 @@ st.title(f"{symbol}")
 df=yf.download(symbol,start="2024-01-01",end="2024-09-30")
 df.reset_index(inplace=True)
 df['Date'] = df['Date'].dt.strftime('%Y-%m-%d')
-st.write(df.head())
-#fig = go.Figure(data=[go.Candlestick(x=df.index,
-#                                     open=df['Open'],
-#                                     high=df['High'],
-#                                     low=df['Low'],
-#                                     close=df['Close'])])
+fig = go.Figure(data=[go.Candlestick(x=df.index,
+                                     open=df['Open'],
+                                     high=df['High'],
+                                     low=df['Low'],
+                                     close=df['Close'])])
 
-#fig.update_layout(xaxis_rangeslider_visible=False)
-#st.plotly_chart(fig, theme='streamlit')
+fig.update_layout(xaxis_rangeslider_visible=False)
+st.plotly_chart(fig, theme='streamlit')
