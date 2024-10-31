@@ -11,14 +11,12 @@ import yfinance as yf
 # Set up your web app
 st.set_page_config(layout="wide", page_title="WebApp_Demo")
 
-# Sidebar
-st.sidebar.title("Input")
 symbol = st.text_input('Please enter the stock symbol: ', 'NVDA').upper()
 number=st.number_input('Please enter historical days: ', 14)
 
 st.title(f"{symbol}")
 
-df = yf.Ticker.history(symbol,period=f'{number}d')
+df = yf.Ticker.history(symbol,period='5d')
 
 fig = go.Figure(data=[go.Candlestick(x=df.index,
                                      open=df['Open'],
