@@ -24,19 +24,14 @@ with col2:
 st.title(f"{symbol}")
 
 stock = yf.Ticker(symbol)
-# if stock is not None:
-#   # Display company's basics
-#   st.write(f"# Sector : {stock.info['sector']}")
-# else:
-#   st.error("Failed to fetch historical data.")
 
-spy_History = stock.history(period='5d')
+df = stock.history(period='5d')
 
-fig = go.Figure(data=[go.Candlestick(x=spy_History.index,
-                                     open=spy_History['Open'],
-                                     high=spy_History['High'],
-                                     low=spy_History['Low'],
-                                     close=spy_History['Close'])])
+fig = go.Figure(data=[go.Candlestick(x=df.index,
+                                     open=df['Open'],
+                                     high=df['High'],
+                                     low=df['Low'],
+                                     close=df['Close'])])
 
 fig.update_layout(xaxis_rangeslider_visible=False)
 st.plotly_chart(fig, theme='streamlit')
