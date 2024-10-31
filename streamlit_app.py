@@ -23,9 +23,7 @@ with col2:
 
 st.title(f"{symbol}")
 
-stock = yf.Ticker(symbol)
-
-df = stock.history(period='5d')
+df = yf.download(symbol=symbol,start=sdate,end=edate)
 
 fig = go.Figure(data=[go.Candlestick(x=df.index,
                                      open=df['Open'],
