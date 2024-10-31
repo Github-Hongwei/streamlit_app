@@ -1,27 +1,22 @@
+from datetime import date, timedelta, datetime
 import streamlit as st
+import pandas as pd
+import mplfinance as mpf
 import matplotlib.pyplot as plt
-import datetime
-import plotly.graph_objs as go
+from pandas_datareader import data as pdr
 
-import appdirs as ad
-ad.user_cache_dir = lambda *args: "/tmp"
-import yfinance as yf
+def get_historical_data(symbol, start_date = None):
+    df = pdr.get_data_yahoo(symbol, start=start_date, end=datetime.now())
+    df = df.rename(columns = {'Open': 'open', 'High': 'high', 'Low': 'low', 'Close': 'close', 'Adj Close': 'adj close', 'Volume': 'volume'})
+    for i in df.columns:
+        df[i] = df[i].astype(float)
+    df.index = pd.to_datetime(df.index)
+    if start_date:
+        df = df[df.index >= start_date]
+    return df
 
-# Specify title and logo for the webpage.
-# Set up your web app
-st.set_page_config(layout="wide", page_title="WebApp_Demo")
+hist = get_historical_data('AAPL', '2021-01-01')
 
-symbol = st.text_input('Please enter the stock symbol: ', 'NVDA').upper()
-
-st.title(f"{symbol}")
-df=yf.download(symbol,start="2024-01-01",end="2024-09-30")
-df.reset_index(inplace=True)
-df['Date'] = df['Date'].dt.strftime('%Y-%m-%d')
-fig = go.Figure(data=[go.Candlestick(x=df.index,
-                                     open=df['Open'],
-                                     high=df['High'],
-                                     low=df['Low'],
-                                     close=df['Close'])])
-
-fig.update_layout(xaxis_rangeslider_visible=False)
-st.plotly_chart(fig, theme='streamlit')
+fig = mpf.figure(style='yahoo', figsize=(8,6))
+mpf.plot(hist)
+st.pyplot(fig)
