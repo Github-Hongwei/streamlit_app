@@ -15,8 +15,8 @@ symbol = st.text_input('Please enter the stock symbol: ', 'NVDA').upper()
 number=st.number_input('Please enter historical days: ', 14)
 
 st.title(f"{symbol}")
-
-df = yf.Ticker.history(symbol,period='5d')
+stock = yf.Ticker(symbol)
+df = stock.history(period='5d')
 
 fig = go.Figure(data=[go.Candlestick(x=df.index,
                                      open=df['Open'],
