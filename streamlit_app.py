@@ -23,7 +23,7 @@ with col2:
 
 st.title(f"{symbol}")
 
-df = yf.download(symbol,sdate,edate,auto_adjust=True)
+df = yf.download(symbol,period='10d')
 
 fig = go.Figure(data=[go.Candlestick(x=df.index,
                                      open=df['Open'],
