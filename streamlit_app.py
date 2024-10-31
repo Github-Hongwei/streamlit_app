@@ -24,11 +24,11 @@ with col2:
 st.title(f"{symbol}")
 
 stock = yf.Ticker(symbol)
-if stock is not None:
-  # Display company's basics
-  #st.write(f"# Sector : {stock.info['sector']}")
-else:
-  st.error("Failed to fetch historical data.")
+# if stock is not None:
+#   # Display company's basics
+#   st.write(f"# Sector : {stock.info['sector']}")
+# else:
+#   st.error("Failed to fetch historical data.")
 
 data = yf.download(symbol,start=sdate,end=edate)
 if data is not None:
