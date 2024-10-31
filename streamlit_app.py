@@ -30,8 +30,13 @@ stock = yf.Ticker(symbol)
 # else:
 #   st.error("Failed to fetch historical data.")
 
-data = yf.download(symbol,start=sdate,end=edate)
-if data is not None:
-    st.line_chart(data['Close'],x_label="Date",y_label="Close")
-else:
-    st.error("Failed to fetch historical data.")
+spy_History = stock.history(period='5d')
+
+fig = go.Figure(data=[go.Candlestick(x=spy_History.index,
+                                     open=spy_History['Open'],
+                                     high=spy_History['High'],
+                                     low=spy_History['Low'],
+                                     close=spy_History['Close'])])
+
+fig.update_layout(xaxis_rangeslider_visible=False)
+st.plotly_chart(fig, theme='streamlit')
