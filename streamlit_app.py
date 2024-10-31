@@ -33,8 +33,8 @@ else:
 
 data = yf.download(symbol,start=sdate,end=edate)
 if data is not None:
-    candlestick = go.Candlestick(x=data.index,open=data['Open'],high=data['High'],low=data['Low'],close=data['Close']
-                            layout = go.Layout(xaxis=dict(title='Date'),yaxis=dict(title='Price'),xaxis_rangeslider_visible=False)
+    candlestick = go.Candlestick(x=data.index,open=data['Open'],high=data['High'],low=data['Low'],close=data['Close'])
+    layout = go.Layout(xaxis=dict(title='Date'),yaxis=dict(title='Price'),xaxis_rangeslider_visible=False)
     fig = go.Figure(data=[candlestick], layout=layout)
     st.plotly_chart(fig,theme='streamlit')
 else:
