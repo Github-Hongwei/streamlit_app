@@ -27,18 +27,11 @@ stock = yf.Ticker(symbol)
 if stock is not None:
   # Display company's basics
   st.write(f"# Sector : {stock.info['sector']}")
-  st.write(f"# Company Beta : {stock.info['beta']}")
 else:
   st.error("Failed to fetch historical data.")
 
 data = yf.download(symbol,start=sdate,end=edate)
 if data is not None:
-    # Create candlestick chart using Plotly
-    st.subheader("Candlestick Chart")
-    st.markdown("\n\n")
-    candlestick = go.Candlestick(x=data.index,open=data['Open'],high=data['High'],low=data['Low'],close=data['Close'])
-    layout = go.Layout(xaxis=dict(title='Date'),yaxis=dict(title='Price'),xaxis_rangeslider_visible=False)
-    fig = go.Figure(data=[candlestick], layout=layout)
-    st.plotly_chart(fig,theme='streamlit')
+    st.line_chart(data['Close'],x_label="Date",y_label="Close")
 else:
     st.error("Failed to fetch historical data.")
