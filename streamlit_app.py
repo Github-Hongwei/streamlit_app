@@ -19,7 +19,7 @@ col1, col2 = st.sidebar.columns(2, gap="medium")
 with col1:
     sdate = st.date_input('Start Date',value=datetime.date(2024,1,1))
 with col2:
-    edate = st.date_input('End Date',value=datetime.date.today())
+    edate = st.date_input('End Date',value=datetime.date.(2024,09,30))
 
 st.title(f"{symbol}")
 
