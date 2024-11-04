@@ -37,7 +37,7 @@ data = yf.download(symbol,start=sdate,end=edate)
 data.columns = pd.Index(['Adj Close','Close','High','Low','Open','Volume'])
 if data is not None:
     colors = mpf.marketcolors(up='lime',down='r',wick={'up':'lime','down':'r'},edge={'up':'lime','down':'r'},volume={'up':'lime','down':'r'})
-    s = mpf.make_mpf_style(marketcolors=colors,facecolor='black,edgecolor='w',gridstyle='solid',gridcolor='grey')
+    s = mpf.make_mpf_style(marketcolors=colors,facecolor='black',edgecolor='w',gridstyle='solid',gridcolor='grey')
     kwargs = dict(type='candle',style=s,figratio=(20,10),width_adjuster_version='v0', volume=True)
     fig,ax=mpf.plot(data,**kwargs)
     st.pyplot(fig)
