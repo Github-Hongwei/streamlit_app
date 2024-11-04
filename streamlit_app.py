@@ -34,12 +34,12 @@ else:
 data = yf.download(symbol,start=sdate,end=edate)
 data.columns = pd.Index(['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume'])
 if data is not None:
-    go_fig = go.Figure(data=[go.Candlestick(x=data.index,
+    fig = go.Figure(data=[go.Candlestick(x=data.index,
                                           open=data['Open'],
                                           high=data['High'],
                                           low=data['Low'],
                                           close=data['Close'])])
     fig.update_layout(xaxis_rangeslider_visible=False)
-    st.plotly_chart(go_fig)
+    st.plotly_chart(fig)
 else:
     st.error("Failed to fetch historical data.")
