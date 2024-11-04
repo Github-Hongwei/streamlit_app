@@ -4,5 +4,4 @@ matplotlib
 appdirs
 yfinance
 plotly
-mplfinance
-pandas_datareader
+pandas
