@@ -33,9 +33,9 @@ else:
   st.error("Failed to fetch historical data.")
 
 data = yf.download(symbol,start=sdate,end=edate)
-data.columns = pd.Index(['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume'])
+data.columns = pd.Index(['Adj Close','Close','High','Low','Open','Volume'])
 if data is not None:
-    fig, ax = mpf.plot(data, title=f'{symbol}',volume=True,type='candle',style='yahoo',returnfig=True)
+    fig, ax = mpf.plot(data,volume=True,type='candle',style='yahoo',returnfig=True)
     st.pyplot(fig)
 else:
     st.error("Failed to fetch historical data.")
