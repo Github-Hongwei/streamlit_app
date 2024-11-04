@@ -35,11 +35,11 @@ else:
 
 data = yf.download(symbol,start=sdate,end=edate)
 data.columns = pd.Index(['Adj Close','Close','High','Low','Open','Volume'])
-data.ta.rsi(length=20,append=True)
-data.ta.obv(append=True)
 if data is not None:
-    apds=[mpf.make_addplot(data['RSI_20'],panel=2,color='blue',secondary_y=False,ylabel='RSI20')]
-    fig, ax= mpf.plot(data,volume=True,type='candle',style='nightclouds',mav=(50,200),returnfig=True,addplot=apds)
+    colors = mpf.marketcolors(up='lime',down='r',wick={'up':'lime','down':'r'},edge={'up':'lime','down':'r'},volume={'up':'lime','down':'r'})
+    s = mpf.make_mpf_style(marketcolors=colors,facecolor='black,edgecolor='w',gridstyle='solid',gridcolor='grey')
+    kwargs = dict(type='candle',style=s,figratio=(20,10),width_adjuster_version='v0', volume=True)
+    fig,ax=mpf.plot(data,**kwargs)
     st.pyplot(fig)
 else:
     st.error("Failed to fetch historical data.")
