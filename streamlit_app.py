@@ -35,7 +35,7 @@ else:
 data = yf.download(symbol,start=sdate,end=edate)
 data.columns = pd.Index(['Adj Close','Close','High','Low','Open','Volume'])
 if data is not None:
-    colors = mpf.marketcolors('up'='lime','down'='r',wick={'up':'lime','down':'r'},edge={'up':'lime','down':'r'},volume={'up':'lime','down':'r'})
+    colors = mpf.marketcolors(up='lime',down='r',wick={up:'lime',down:'r'},edge={up:'lime',down:'r'},volume={up:'lime',down:'r'})
     s = mpf.make_mpf_style(marketcolors=colors,facecolor='black',edgecolor='w')
     fig,ax=mpf.plot(data,style='s')
     st.pyplot(fig)
