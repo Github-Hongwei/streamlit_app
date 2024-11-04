@@ -13,9 +13,9 @@ st.set_page_config(layout="wide", page_title="WebApp_Demo")
 
 # Sidebar
 st.sidebar.title("Input")
-symbol = st.sidebar.text_input('Please enter the stock symbol: ', 'NVDA').upper()
-ma1 = st.sidebar.slider('Please enter the moving average days: ',min_value=10, max_value=100, step=10)
-ma2 = st.sidebar.slider('Please enter the moving average days: ',min_value=50, max_value=200, step=10)
+symbol = st.sidebar.text_input('Stock symbol: ', 'NVDA').upper()
+ma1 = st.sidebar.slider('Short-term moving average days: ',min_value=10, max_value=100, step=10)
+ma2 = st.sidebar.slider('Long-term moving average days: ',min_value=50, max_value=200, step=10)
 # Selection for a specific time frame.
 col1, col2 = st.sidebar.columns(2, gap="medium")
 with col1:
