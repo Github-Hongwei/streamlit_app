@@ -23,22 +23,23 @@ with col2:
 
 st.title(f"{symbol}")
 
-# stock = yf.Ticker(symbol)
-# if stock is not None:
-#   # Display company's basics
-#   st.write(f"# Sector : {stock.info['sector']}")
-#   st.write(f"# Company Beta : {stock.info['beta']}")
-# else:
-#   st.error("Failed to fetch historical data.")
+stock = yf.Ticker(symbol)
+if stock is not None:
+  # Display company's basics
+  st.write(f"# Sector : {stock.info['sector']}")
+  st.write(f"# Company Beta : {stock.info['beta']}")
+else:
+  st.error("Failed to fetch historical data.")
 
 data = yf.download(symbol,start=sdate,end=edate)
 data.columns = pd.Index(['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume'])
 if data is not None:
-  go_fig = go.Figure(data=[go.Candlestick(x=data.index,
+    go_fig = go.Figure(data=[go.Candlestick(x=data.index,
                                           open=data['Open'],
                                           high=data['High'],
                                           low=data['Low'],
                                           close=data['Close'])])
-  st.plotly_chart(go_fig)
+    fig.update_layout(xaxis_rangeslider_visible=False)
+    st.plotly_chart(go_fig)
 else:
-  st.error("Failed to fetch historical data.")
+    st.error("Failed to fetch historical data.")
