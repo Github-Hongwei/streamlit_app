@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import datetime
 import yfinance as yf
 import pandas as pd
-import mplfinance as mpf
 import plotly.graph_objs as go
 import appdirs as ad
 ad.user_cache_dir = lambda *args: "/tmp"
@@ -35,9 +34,11 @@ else:
 data = yf.download(symbol,start=sdate,end=edate)
 data.columns = pd.Index(['Adj Close','Close','High','Low','Open','Volume'])
 if data is not None:
-    colors = mpf.marketcolors(up='lime',down='r',wick={up:'lime',down:'r'},edge={up:'lime',down:'r'},volume={up:'lime',down:'r'})
-    s = mpf.make_mpf_style(marketcolors=colors,facecolor='black',edgecolor='w')
-    fig,ax=mpf.plot(data,style='s')
-    st.pyplot(fig)
+    fig = go.Figure(data=[go.Candlestick(x=data.index,
+                                          open=data['Open'],
+                                          high=data['High'],
+                                          low=data['Low'],
+                                          close=data['Close'])])
+    st.plotly_chart(fig)
 else:
     st.error("Failed to fetch historical data.")
