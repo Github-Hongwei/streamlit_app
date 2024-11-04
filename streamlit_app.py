@@ -37,6 +37,6 @@ data.columns = pd.Index(['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume'])
 if data is not None:
     fig = mpf.figure(style='yahoo', figsize=(8,6))
     mpf.plot(data)
-    st.pyplot(fig)
+    st.plotly_chart(fig)
 else:
     st.error("Failed to fetch historical data.")
