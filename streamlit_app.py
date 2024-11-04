@@ -35,7 +35,7 @@ else:
 data = yf.download(symbol,start=sdate,end=edate)
 data.columns = pd.Index(['Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume'])
 if data is not None:
-    fig, ax = mpf.plot(data, title=f'{symbol}', type=chart_type,show_nontrading=show_nontrading_days,volume=True,style=chart_style,figsize=(15,10),returnfig=True)
+    fig, ax = mpf.plot(data, title=f'{symbol}', volume=True,style=chart_style,figsize=(15,10),returnfig=True)
     st.pyplot(fig)
 else:
     st.error("Failed to fetch historical data.")
