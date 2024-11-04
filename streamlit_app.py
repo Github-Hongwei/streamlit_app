@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import datetime
 import yfinance as yf
 import pandas as pd
-import mplfinance as mpf
+import mlpfinance as mpf
 import plotly.graph_objs as go
 import appdirs as ad
 ad.user_cache_dir = lambda *args: "/tmp"
