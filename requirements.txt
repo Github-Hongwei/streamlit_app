@@ -5,4 +5,5 @@ appdirs
 yfinance
 plotly
 pandas
+pandas_ta
 mplfinance
