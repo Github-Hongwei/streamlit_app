@@ -38,9 +38,8 @@ data.columns = pd.Index(['Adj Close','Close','High','Low','Open','Volume'])
 data.ta.rsi(length=20,append=True)
 data.ta.obv(append=True)
 if data is not None:
-    fig, ax= mpf.plot(data,volume=True,type='candle',style='nightclouds',mav=(50,200),returnfig=True)
-    apd=[mpf.make_addplot(df['RSI_20'],panel=2,color='blue',secondary_y=False,ylabel='RSI20'),
-     mpf.make_addplot(df['OBV'],panel=3,color='red',secondary_y=False,ylabel='OBV')]
+    apds=[mpf.make_addplot(data['RSI_20'],panel=2,color='blue',secondary_y=False,ylabel='RSI20')]
+    fig, ax= mpf.plot(data,volume=True,type='candle',style='nightclouds',mav=(50,200),returnfig=True,addplot=apds)
     st.pyplot(fig)
 else:
     st.error("Failed to fetch historical data.")
