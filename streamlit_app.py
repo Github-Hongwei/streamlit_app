@@ -34,7 +34,7 @@ else:
 data = yf.download(symbol,start=sdate,end=edate)
 data.columns = pd.Index(['Adj Close','Close','High','Low','Open','Volume'])
 if data is not None:
-    fig = mpf.plot(data,type='candle',style='yahoo',mav=(50,200))
+    fig = mpf.plot(data,type='candle',style='yahoo',mav=(50,200),volume=True)
     st.pyplot(fig)
 else:
     st.error("Failed to fetch historical data.")
