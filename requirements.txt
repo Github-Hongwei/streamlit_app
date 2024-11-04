@@ -3,5 +3,5 @@ datetime
 matplotlib
 appdirs
 yfinance
-plotly
+mplfinance
 pandas
