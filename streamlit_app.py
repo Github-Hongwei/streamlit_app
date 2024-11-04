@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import datetime
 import yfinance as yf
 import pandas as pd
-import pandas_ta as ta
 import mplfinance as mpf
 import plotly.graph_objs as go
 import appdirs as ad
