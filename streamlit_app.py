@@ -24,12 +24,12 @@ with col2:
     edate = st.date_input('End Date',value=datetime.date.today())
 
 
-st.title(f"{symbol}")
+st.title(f"Symbol = {symbol}")
 
 stock = yf.Ticker(symbol)
 if stock is not None:
   # Display company's basics
-  st.write(f"# Name:{stock.info['shortName']}")
+  st.write(f"# Name : {stock.info['shortName']}")
   st.write(f"# Market : {stock.info['market']}")
   st.write(f"# Company Beta : {stock.info['beta']}")
 else:
