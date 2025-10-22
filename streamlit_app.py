@@ -28,8 +28,10 @@ st.title(f"{symbol}")
 
 stock = yf.Ticker(symbol)
 if stock is not None:
-  # Display company's basics
-  st.write(f"# Sector : {stock.info['sector']}")
+  # Display company's basic
+  st.write(f"# Symbol:{symbol})
+  st.write(f"# Name:{stock.info['shortName']}")
+  st.write(f"# Market : {stock.info['market']}")
   st.write(f"# Company Beta : {stock.info['beta']}")
 else:
   st.error("Failed to fetch historical data.")
