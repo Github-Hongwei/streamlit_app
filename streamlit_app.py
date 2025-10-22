@@ -36,8 +36,7 @@ else:
 
 data = yf.download(symbol,start=sdate,end=edate,multi_level_index=False,auto_adjust=False)
 if data is not None:
-    fig, ax = mpf.plot(data,type='candle',style='yahoo',mav=(ma1,ma2),volume=True)
-    ax.scatter([1, 2, 3], [1, 2, 3])
+    fig, ax = mpf.plot(data,type='candle',style='yahoo',mav=(ma1,ma2),volume=True,returnfig=True)
     st.pyplot(fig)
 else:
     st.error("Failed to fetch historical data.")
