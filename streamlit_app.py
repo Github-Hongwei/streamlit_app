@@ -34,7 +34,7 @@ if stock is not None:
 else:
   st.error("Failed to fetch historical data.")
 
-data = yf.download(symbol,start=sdate,end=edate)
+data = yf.download(symbol,start=sdate,end=edate,multi_level_index=False,auto_adjust=False)
 data.columns = pd.Index(['Adj Close','Close','High','Low','Open','Volume'])
 if data is not None:
     fig = mpf.plot(data,type='candle',style='yahoo',mav=(ma1,ma2),volume=True)
